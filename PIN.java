@@ -7,6 +7,7 @@ class PIN{
     static String correctPin = "1234";
     static String pin;
     static int attempt;
+    static int option;
 
     private double balance = 50000;
 
@@ -39,8 +40,20 @@ class PIN{
         }
         return false;
     }
+    public static void MainMenu(){
+        System.out.println("========== ATM MENU ==========");
+        System.out.println("[1] Check Balance");
+        System.out.println("[2] Deposit");
+        System.out.println("[3] Withdraw");
+        System.out.println("[4] Change PIN");
+        System.out.println("[5] Logout");
+        System.out.println("==============================");
+        System.out.print("Choose an option:");
+        option = scanner.nextInt();
+    }
     public static void checkBalance(){
-        System.out.println();
+        System.out.println("========== Checking of Balance ==========");
+        System.out.println("Current Balance: ");
     }
     public static void deposit(){
         System.out.println();
