@@ -83,6 +83,9 @@ public class PIN {
         if (withdraw > balance){
             System.out.println("\nInvalid Withdrawal amount");
         }
+        else if(withdraw <= 0){
+            System.out.println("Invalid. Try again.");
+        }
         else {
             balance = balance - withdraw;
             System.out.println("\nWithdrawal Successful");
@@ -145,6 +148,9 @@ public class PIN {
                     else {
                         System.out.println("\nInvalid input. Try again.");
                     }
+                }
+                else {
+                    System.out.println("\nInvalid input. Try again.");
                 }
             }
         }  
