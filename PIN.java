@@ -7,8 +7,13 @@ public class PIN {
     private static double balance = 10000.0;
 
     static int attempts;
+
     static String pin;
-    static String correctPin;
+    static String enteredPin;
+    static String newPin;
+    static String cPin;
+    static String correctPin = "1234";
+
     static int option;
     static double depositAmount;
     static double add;
@@ -47,7 +52,8 @@ public class PIN {
         System.out.println("[1] Check Balance");
         System.out.println("[2] Deposit");
         System.out.println("[3] Withdraw");
-        System.out.println("[4] Exit");
+        System.out.println("[4] Change PIN");
+        System.out.println("[5] Exit");
         System.out.print("\nEnter an option: ");
         option = scanner.nextInt();
     }
@@ -83,9 +89,30 @@ public class PIN {
             System.out.println("Updated Balance: " + balance);
         }
     }
-    public static void main(String[] args) {
-        correctPin = "1234";
+    public static void ChangePIN(){
+        System.out.println("\n========== CHANGE PIN ==========");
+        System.out.print("Enter current PIN: ");
+        enteredPin = scanner.next();
 
+        if (!enteredPin.equals(correctPin)){
+            System.out.println("\nIncorrect PIN");
+            return;
+        }
+        System.out.print("\nEnter new PIN: ");
+        newPin = scanner.next();
+
+        System.out.print("Type new PIN: ");
+        cPin = scanner.next();
+
+        if (newPin.equals(cPin)){
+            correctPin = newPin;
+            System.out.println("\nPIN successfully changed.");
+        }
+        else {
+            System.out.println("\nPINs do not match.");
+        }
+    }
+    public static void main(String[] args) {
         if (Login() == true){
             while (true){
                 MainMenu();
@@ -99,6 +126,9 @@ public class PIN {
                     Withdraw();
                 }
                 else if (option == 4){
+                    ChangePIN();
+                }
+                else if (option == 5){
                     System.out.println("\n Are you sure do you want to exit? ");
                     System.out.println("[1] Yes");
                     System.out.println("[2] No");
