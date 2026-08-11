@@ -1,8 +1,13 @@
 package ATM;
 import java.util.Scanner;
+import java.util.ArrayList;
 
-public class PIN {
+public class TRANSACTION {
+
     static Scanner scanner = new Scanner(System.in);
+    static ArrayList<Double> depositList;
+    static ArrayList<Double> withdrawList;
+    static ArrayList<Double> tCount;
 
     private static double balance = 10000.0;
 
@@ -16,6 +21,7 @@ public class PIN {
 
     static int option;
     static double depositAmount;
+
     static double withdraw;
     static int exit;
 
@@ -51,8 +57,9 @@ public class PIN {
         System.out.println("[1] Check Balance");
         System.out.println("[2] Deposit");
         System.out.println("[3] Withdraw");
-        System.out.println("[4] Change PIN");
-        System.out.println("[5] Exit");
+        System.out.println("[4] Transaction History");
+        System.out.println("[5] Change PIN");
+        System.out.println("[6] Exit");
         System.out.print("\nEnter an option: ");
         option = scanner.nextInt();
     }
@@ -66,7 +73,10 @@ public class PIN {
         depositAmount = scanner.nextDouble();
 
         if (depositAmount > 0){
+
             balance = depositAmount + balance;
+            depositList.add(depositAmount);        
+            tCount.size();  
             System.out.println("\nDeposit Successful");
             System.out.println("Updated balance: " + balance);
         }
@@ -87,8 +97,19 @@ public class PIN {
         }
         else {
             balance = balance - withdraw;
+            withdrawList.add(withdraw);
+            tCount.size();
             System.out.println("\nWithdrawal Successful");
             System.out.println("Updated Balance: " + balance);
+        }
+    }
+    public static void TransactionHistory(){
+        System.out.println("========== TRANSACTION HISTORY ==========");
+        if (tCount.isEmpty()){
+            System.out.println("No transactions yet");
+        }
+        else {
+            
         }
     }
     public static void ChangePIN(){
@@ -115,6 +136,7 @@ public class PIN {
         }
     }
     public static void main(String[] args) {
+
         if (Login() == true){
             while (true){
                 MainMenu();
@@ -127,10 +149,14 @@ public class PIN {
                 else if (option == 3){
                     Withdraw();
                 }
-                else if (option == 4){
-                    ChangePIN();
+                else if(option == 4){
+                    System.out.println();
+                    ////////////////////
                 }
                 else if (option == 5){
+                    ChangePIN();
+                }
+                else if (option == 6){
                     System.out.println("\n Are you sure do you want to exit? ");
                     System.out.println("[1] Yes");
                     System.out.println("[2] No");
