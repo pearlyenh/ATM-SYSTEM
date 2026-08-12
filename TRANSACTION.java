@@ -1,13 +1,15 @@
 package ATM;
 import java.util.Scanner;
 import java.util.ArrayList;
+/* Logic wrong in Deposit, Withdraw, and Transaction
+This is the time to learn how to system with diff files */
 
 public class TRANSACTION {
 
     static Scanner scanner = new Scanner(System.in);
     static ArrayList<Double> depositList;
     static ArrayList<Double> withdrawList;
-    static ArrayList<Double> tCount;
+    static ArrayList<Double> list;
 
     private static double balance = 10000.0;
 
@@ -73,10 +75,9 @@ public class TRANSACTION {
         depositAmount = scanner.nextDouble();
 
         if (depositAmount > 0){
-
             balance = depositAmount + balance;
-            depositList.add(depositAmount);        
-            tCount.size();  
+            depositList.add(depositAmount);       
+            depositList.size(); 
             System.out.println("\nDeposit Successful");
             System.out.println("Updated balance: " + balance);
         }
@@ -98,18 +99,24 @@ public class TRANSACTION {
         else {
             balance = balance - withdraw;
             withdrawList.add(withdraw);
-            tCount.size();
+            withdrawList.size();
             System.out.println("\nWithdrawal Successful");
             System.out.println("Updated Balance: " + balance);
         }
     }
     public static void TransactionHistory(){
         System.out.println("========== TRANSACTION HISTORY ==========");
-        if (tCount.isEmpty()){
+        if (depositList.isEmpty() && withdrawList.isEmpty()){
             System.out.println("No transactions yet");
+            return;
         }
         else {
-            
+            for (int d = 0; d < depositList.size(); d++){
+                System.out.println(d + " Deposit: " + depositList.get(d));
+            }
+            for (int w = 0; w < withdrawList.size(); w++){
+                System.out.println("\nWithdrawal: " + withdrawList.get(w));
+            }
         }
     }
     public static void ChangePIN(){
@@ -136,7 +143,7 @@ public class TRANSACTION {
         }
     }
     public static void main(String[] args) {
-
+        
         if (Login() == true){
             while (true){
                 MainMenu();
@@ -150,8 +157,7 @@ public class TRANSACTION {
                     Withdraw();
                 }
                 else if(option == 4){
-                    System.out.println();
-                    ////////////////////
+                    TransactionHistory();
                 }
                 else if (option == 5){
                     ChangePIN();
