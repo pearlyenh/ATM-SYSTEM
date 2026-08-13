@@ -75,6 +75,7 @@ public class TRANSACTION {
         depositAmount = scanner.nextDouble();
 
         if (depositAmount > 0){
+            // naay problem ani nasad.
             balance = depositAmount + balance;
             depositList.add(depositAmount);       
             depositList.size(); 
@@ -89,7 +90,7 @@ public class TRANSACTION {
         System.out.println("\n============== WITHDRAW ===============");
         System.out.print("Enter withdrawal amount: ");
         withdraw = scanner.nextDouble();
-
+        // naay problem ani nasad.
         if (withdraw > balance){
             System.out.println("\nInvalid Withdrawal amount");
         }
@@ -105,6 +106,7 @@ public class TRANSACTION {
         }
     }
     public static void TransactionHistory(){
+        // naay problem ani nasad.
         System.out.println("========== TRANSACTION HISTORY ==========");
         if (depositList.isEmpty() && withdrawList.isEmpty()){
             System.out.println("No transactions yet");
