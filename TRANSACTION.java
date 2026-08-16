@@ -1,15 +1,11 @@
 package ATM;
 import java.util.Scanner;
 import java.util.ArrayList;
-/* Logic wrong in Deposit, Withdraw, and Transaction
-This is the time to learn how to system with diff files */
 
 public class TRANSACTION {
 
     static Scanner scanner = new Scanner(System.in);
-    static ArrayList<Double> depositList;
-    static ArrayList<Double> withdrawList;
-    static ArrayList<Double> list;
+    static ArrayList<Double> transactionList = new ArrayList<>();
 
     private static double balance = 10000.0;
 
@@ -70,54 +66,47 @@ public class TRANSACTION {
         System.out.println("Current Balance: " + balance);
     }
     public static void Deposit(){
-        System.out.println("\n============ DEPOSIT ============");
-        System.out.print("Enter deposit amount: ");
+        System.out.println("\n========== DEPOSIT =============");
+        System.out.println("Enter deposit amount: ");
         depositAmount = scanner.nextDouble();
 
-        if (depositAmount > 0){
-            // naay problem ani nasad.
-            balance = depositAmount + balance;
-            depositList.add(depositAmount);       
-            depositList.size(); 
-            System.out.println("\nDeposit Successful");
-            System.out.println("Updated balance: " + balance);
+        if (depositAmount <= 0){
+            System.out.println("\nInvalid deposit amount");
         }
         else {
-            System.out.println("\nInvalid deposit amount");
+            balance = depositAmount + balance;
+            transactionList.add(depositAmount);
+
+            System.out.println("\nDeposit Successful!");
+            System.out.println("Updated balance: " + balance);
         }
     }
     public static void Withdraw(){
         System.out.println("\n============== WITHDRAW ===============");
         System.out.print("Enter withdrawal amount: ");
         withdraw = scanner.nextDouble();
-        // naay problem ani nasad.
-        if (withdraw > balance){
-            System.out.println("\nInvalid Withdrawal amount");
+
+        if (withdraw <= 0){
+            System.out.println("\nInvalid withdrawal amount");
         }
-        else if(withdraw <= 0){
-            System.out.println("Invalid. Try again.");
+        else if (withdraw > balance){
+            System.out.println("\nInsuffient balance");
         }
         else {
             balance = balance - withdraw;
-            withdrawList.add(withdraw);
-            withdrawList.size();
-            System.out.println("\nWithdrawal Successful");
-            System.out.println("Updated Balance: " + balance);
+            transactionList.add(withdraw);
+            System.out.println("\nWithdrawal balance");
+            System.out.println("Updated balance: " + balance);
         }
     }
     public static void TransactionHistory(){
-        // naay problem ani nasad.
-        System.out.println("========== TRANSACTION HISTORY ==========");
-        if (depositList.isEmpty() && withdrawList.isEmpty()){
-            System.out.println("No transactions yet");
-            return;
+        System.out.println("\n========== TRANSACTION HISTORY ==========");
+        if (transactionList.isEmpty()){
+            System.out.println("\nNo Transactions yet.");
         }
         else {
-            for (int d = 0; d < depositList.size(); d++){
-                System.out.println(d + " Deposit: " + depositList.get(d));
-            }
-            for (int w = 0; w < withdrawList.size(); w++){
-                System.out.println("\nWithdrawal: " + withdrawList.get(w));
+            for (int i = 0; i < transactionList.size(); i++){
+                System.out.println(transactionList);
             }
         }
     }
@@ -185,7 +174,7 @@ public class TRANSACTION {
                 else {
                     System.out.println("\nInvalid input. Try again.");
                 }
-            }
-        }  
+            }  
+        }
     }
 }
