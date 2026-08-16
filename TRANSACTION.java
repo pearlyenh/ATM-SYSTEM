@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class TRANSACTION {
 
     static Scanner scanner = new Scanner(System.in);
-    static ArrayList<Double> transactionList = new ArrayList<>();
+    static ArrayList<String> transactionList = new ArrayList<>();
 
-    private static double balance = 10000.0;
+    private static double balance = 0.0;
 
     static int attempts;
 
@@ -67,7 +67,7 @@ public class TRANSACTION {
     }
     public static void Deposit(){
         System.out.println("\n========== DEPOSIT =============");
-        System.out.println("Enter deposit amount: ");
+        System.out.print("Enter deposit amount: ");
         depositAmount = scanner.nextDouble();
 
         if (depositAmount <= 0){
@@ -75,7 +75,7 @@ public class TRANSACTION {
         }
         else {
             balance = depositAmount + balance;
-            transactionList.add(depositAmount);
+            transactionList.add("\nDeposit: " + depositAmount + "\nBalance after deposit: " + balance + "\n");
 
             System.out.println("\nDeposit Successful!");
             System.out.println("Updated balance: " + balance);
@@ -94,8 +94,8 @@ public class TRANSACTION {
         }
         else {
             balance = balance - withdraw;
-            transactionList.add(withdraw);
-            System.out.println("\nWithdrawal balance");
+            transactionList.add("\nWithdrawal: " + withdraw + "\nBalance after withdrawal: " + balance + "\n");
+            System.out.println("\nWithdrawal successful!");
             System.out.println("Updated balance: " + balance);
         }
     }
@@ -106,7 +106,7 @@ public class TRANSACTION {
         }
         else {
             for (int i = 0; i < transactionList.size(); i++){
-                System.out.println(transactionList);
+                System.out.println("Transaction #" + (i+1) + transactionList.get(i));
             }
         }
     }
